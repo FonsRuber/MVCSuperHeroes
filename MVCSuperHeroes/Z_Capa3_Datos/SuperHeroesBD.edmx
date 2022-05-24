@@ -1,0 +1,463 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SuperHeroesDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bombero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProfesionesHeroicas" Type="bigint" Nullable="false" />
+          <Property Name="ApagarFuego" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuperHumanos" Type="bigint" Nullable="false" />
+          <Property Name="LigaDeLaJusticia" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marvel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuperHumanos" Type="bigint" Nullable="false" />
+          <Property Name="Vengadores" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfesionesHeroicas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuperHeroe" Type="bigint" Nullable="false" />
+          <Property Name="Valor" Type="int" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sanitario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProfesionesHeroicas" Type="bigint" Nullable="false" />
+          <Property Name="Curar" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuperHeroe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DNI" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Edad" Type="int" Nullable="false" />
+          <Property Name="Peso" Type="int" Nullable="false" />
+          <Property Name="Altura" Type="int" Nullable="false" />
+          <Property Name="SuperPoder" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Borrado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SuperHumanos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSuperHeroe" Type="bigint" Nullable="false" />
+          <Property Name="Volar" Type="bit" Nullable="false" />
+          <Property Name="SuperFuerza" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bombero_ProfesionesHeroicas">
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="1" />
+          <End Role="Bombero" Type="Self.Bombero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfesionesHeroicas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bombero">
+              <PropertyRef Name="IdProfesionesHeroicas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DC_SuperHumanos">
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="1" />
+          <End Role="DC" Type="Self.DC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHumanos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DC">
+              <PropertyRef Name="IdSuperHumanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marvel_SuperHumanos">
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="1" />
+          <End Role="Marvel" Type="Self.Marvel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHumanos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marvel">
+              <PropertyRef Name="IdSuperHumanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfesionesHeroicas_SuperHeroe">
+          <End Role="SuperHeroe" Type="Self.SuperHeroe" Multiplicity="1" />
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHeroe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionesHeroicas">
+              <PropertyRef Name="IdSuperHeroe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sanitario_ProfesionesHeroicas">
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="1" />
+          <End Role="Sanitario" Type="Self.Sanitario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfesionesHeroicas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sanitario">
+              <PropertyRef Name="IdProfesionesHeroicas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuperHumanos_SuperHeroe">
+          <End Role="SuperHeroe" Type="Self.SuperHeroe" Multiplicity="1" />
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHeroe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuperHumanos">
+              <PropertyRef Name="IdSuperHeroe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuperHeroesDBModelStoreContainer">
+          <EntitySet Name="Bombero" EntityType="Self.Bombero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DC" EntityType="Self.DC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marvel" EntityType="Self.Marvel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfesionesHeroicas" EntityType="Self.ProfesionesHeroicas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sanitario" EntityType="Self.Sanitario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperHeroe" EntityType="Self.SuperHeroe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SuperHumanos" EntityType="Self.SuperHumanos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bombero_ProfesionesHeroicas" Association="Self.FK_Bombero_ProfesionesHeroicas">
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+            <End Role="Bombero" EntitySet="Bombero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DC_SuperHumanos" Association="Self.FK_DC_SuperHumanos">
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+            <End Role="DC" EntitySet="DC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marvel_SuperHumanos" Association="Self.FK_Marvel_SuperHumanos">
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+            <End Role="Marvel" EntitySet="Marvel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesionesHeroicas_SuperHeroe" Association="Self.FK_ProfesionesHeroicas_SuperHeroe">
+            <End Role="SuperHeroe" EntitySet="SuperHeroe" />
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sanitario_ProfesionesHeroicas" Association="Self.FK_Sanitario_ProfesionesHeroicas">
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+            <End Role="Sanitario" EntitySet="Sanitario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuperHumanos_SuperHeroe" Association="Self.FK_SuperHumanos_SuperHeroe">
+            <End Role="SuperHeroe" EntitySet="SuperHeroe" />
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SuperHeroesDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bombero">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfesionesHeroicas" Type="Int64" Nullable="false" />
+          <Property Name="ApagarFuego" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProfesionesHeroicas" Relationship="Self.FK_Bombero_ProfesionesHeroicas" FromRole="Bombero" ToRole="ProfesionesHeroicas" />
+        </EntityType>
+        <EntityType Name="DC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuperHumanos" Type="Int64" Nullable="false" />
+          <Property Name="LigaDeLaJusticia" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SuperHumanos" Relationship="Self.FK_DC_SuperHumanos" FromRole="DC" ToRole="SuperHumanos" />
+        </EntityType>
+        <EntityType Name="Marvel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuperHumanos" Type="Int64" Nullable="false" />
+          <Property Name="Vengadores" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SuperHumanos" Relationship="Self.FK_Marvel_SuperHumanos" FromRole="Marvel" ToRole="SuperHumanos" />
+        </EntityType>
+        <EntityType Name="ProfesionesHeroicas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuperHeroe" Type="Int64" Nullable="false" />
+          <Property Name="Valor" Type="Int32" Nullable="false" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Bombero" Relationship="Self.FK_Bombero_ProfesionesHeroicas" FromRole="ProfesionesHeroicas" ToRole="Bombero" />
+          <NavigationProperty Name="SuperHeroe" Relationship="Self.FK_ProfesionesHeroicas_SuperHeroe" FromRole="ProfesionesHeroicas" ToRole="SuperHeroe" />
+          <NavigationProperty Name="Sanitario" Relationship="Self.FK_Sanitario_ProfesionesHeroicas" FromRole="ProfesionesHeroicas" ToRole="Sanitario" />
+        </EntityType>
+        <EntityType Name="Sanitario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProfesionesHeroicas" Type="Int64" Nullable="false" />
+          <Property Name="Curar" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProfesionesHeroicas" Relationship="Self.FK_Sanitario_ProfesionesHeroicas" FromRole="Sanitario" ToRole="ProfesionesHeroicas" />
+        </EntityType>
+        <EntityType Name="SuperHeroe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DNI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Edad" Type="Int32" Nullable="false" />
+          <Property Name="Peso" Type="Int32" Nullable="false" />
+          <Property Name="Altura" Type="Int32" Nullable="false" />
+          <Property Name="SuperPoder" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Borrado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProfesionesHeroicas" Relationship="Self.FK_ProfesionesHeroicas_SuperHeroe" FromRole="SuperHeroe" ToRole="ProfesionesHeroicas" />
+          <NavigationProperty Name="SuperHumanos" Relationship="Self.FK_SuperHumanos_SuperHeroe" FromRole="SuperHeroe" ToRole="SuperHumanos" />
+        </EntityType>
+        <EntityType Name="SuperHumanos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSuperHeroe" Type="Int64" Nullable="false" />
+          <Property Name="Volar" Type="Boolean" Nullable="false" />
+          <Property Name="SuperFuerza" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DC" Relationship="Self.FK_DC_SuperHumanos" FromRole="SuperHumanos" ToRole="DC" />
+          <NavigationProperty Name="Marvel" Relationship="Self.FK_Marvel_SuperHumanos" FromRole="SuperHumanos" ToRole="Marvel" />
+          <NavigationProperty Name="SuperHeroe" Relationship="Self.FK_SuperHumanos_SuperHeroe" FromRole="SuperHumanos" ToRole="SuperHeroe" />
+        </EntityType>
+        <Association Name="FK_Bombero_ProfesionesHeroicas">
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="1" />
+          <End Role="Bombero" Type="Self.Bombero" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfesionesHeroicas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bombero">
+              <PropertyRef Name="IdProfesionesHeroicas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DC_SuperHumanos">
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="1" />
+          <End Role="DC" Type="Self.DC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHumanos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DC">
+              <PropertyRef Name="IdSuperHumanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Marvel_SuperHumanos">
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="1" />
+          <End Role="Marvel" Type="Self.Marvel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHumanos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Marvel">
+              <PropertyRef Name="IdSuperHumanos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfesionesHeroicas_SuperHeroe">
+          <End Role="SuperHeroe" Type="Self.SuperHeroe" Multiplicity="1" />
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHeroe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfesionesHeroicas">
+              <PropertyRef Name="IdSuperHeroe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sanitario_ProfesionesHeroicas">
+          <End Role="ProfesionesHeroicas" Type="Self.ProfesionesHeroicas" Multiplicity="1" />
+          <End Role="Sanitario" Type="Self.Sanitario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfesionesHeroicas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Sanitario">
+              <PropertyRef Name="IdProfesionesHeroicas" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SuperHumanos_SuperHeroe">
+          <End Role="SuperHeroe" Type="Self.SuperHeroe" Multiplicity="1" />
+          <End Role="SuperHumanos" Type="Self.SuperHumanos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SuperHeroe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SuperHumanos">
+              <PropertyRef Name="IdSuperHeroe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SuperHeroesDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bombero" EntityType="Self.Bombero" />
+          <EntitySet Name="DC" EntityType="Self.DC" />
+          <EntitySet Name="Marvel" EntityType="Self.Marvel" />
+          <EntitySet Name="ProfesionesHeroicas" EntityType="Self.ProfesionesHeroicas" />
+          <EntitySet Name="Sanitario" EntityType="Self.Sanitario" />
+          <EntitySet Name="SuperHeroe" EntityType="Self.SuperHeroe" />
+          <EntitySet Name="SuperHumanos" EntityType="Self.SuperHumanos" />
+          <AssociationSet Name="FK_Bombero_ProfesionesHeroicas" Association="Self.FK_Bombero_ProfesionesHeroicas">
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+            <End Role="Bombero" EntitySet="Bombero" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DC_SuperHumanos" Association="Self.FK_DC_SuperHumanos">
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+            <End Role="DC" EntitySet="DC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Marvel_SuperHumanos" Association="Self.FK_Marvel_SuperHumanos">
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+            <End Role="Marvel" EntitySet="Marvel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfesionesHeroicas_SuperHeroe" Association="Self.FK_ProfesionesHeroicas_SuperHeroe">
+            <End Role="SuperHeroe" EntitySet="SuperHeroe" />
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sanitario_ProfesionesHeroicas" Association="Self.FK_Sanitario_ProfesionesHeroicas">
+            <End Role="ProfesionesHeroicas" EntitySet="ProfesionesHeroicas" />
+            <End Role="Sanitario" EntitySet="Sanitario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SuperHumanos_SuperHeroe" Association="Self.FK_SuperHumanos_SuperHeroe">
+            <End Role="SuperHeroe" EntitySet="SuperHeroe" />
+            <End Role="SuperHumanos" EntitySet="SuperHumanos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SuperHeroesDBModelStoreContainer" CdmEntityContainer="SuperHeroesDBEntities">
+          <EntitySetMapping Name="Bombero">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.Bombero">
+              <MappingFragment StoreEntitySet="Bombero">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProfesionesHeroicas" ColumnName="IdProfesionesHeroicas" />
+                <ScalarProperty Name="ApagarFuego" ColumnName="ApagarFuego" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DC">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.DC">
+              <MappingFragment StoreEntitySet="DC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSuperHumanos" ColumnName="IdSuperHumanos" />
+                <ScalarProperty Name="LigaDeLaJusticia" ColumnName="LigaDeLaJusticia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marvel">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.Marvel">
+              <MappingFragment StoreEntitySet="Marvel">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSuperHumanos" ColumnName="IdSuperHumanos" />
+                <ScalarProperty Name="Vengadores" ColumnName="Vengadores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfesionesHeroicas">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.ProfesionesHeroicas">
+              <MappingFragment StoreEntitySet="ProfesionesHeroicas">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSuperHeroe" ColumnName="IdSuperHeroe" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sanitario">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.Sanitario">
+              <MappingFragment StoreEntitySet="Sanitario">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdProfesionesHeroicas" ColumnName="IdProfesionesHeroicas" />
+                <ScalarProperty Name="Curar" ColumnName="Curar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperHeroe">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.SuperHeroe">
+              <MappingFragment StoreEntitySet="SuperHeroe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DNI" ColumnName="DNI" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Peso" ColumnName="Peso" />
+                <ScalarProperty Name="Altura" ColumnName="Altura" />
+                <ScalarProperty Name="SuperPoder" ColumnName="SuperPoder" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SuperHumanos">
+            <EntityTypeMapping TypeName="SuperHeroesDBModel.SuperHumanos">
+              <MappingFragment StoreEntitySet="SuperHumanos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdSuperHeroe" ColumnName="IdSuperHeroe" />
+                <ScalarProperty Name="Volar" ColumnName="Volar" />
+                <ScalarProperty Name="SuperFuerza" ColumnName="SuperFuerza" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,48 @@
+﻿@using MVCSuperHeroes.Z_Capa2_Servicios.ClasesSuperHeroe;
+
+@model List<SanitarioDTO>
+
+@{
+    ViewBag.Title = "Listado Sanitarios";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ¿Puede Curar?
+        </th>
+        <th>
+            ID del SuperHeroe
+        </th>
+        <th>
+            Nombre del SuperHeroe
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.curar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idSuperHeroe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idSuperHeroe }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idSuperHeroe }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idSuperHeroe })
+            </td>
+        </tr>
+    }
+
+</table>

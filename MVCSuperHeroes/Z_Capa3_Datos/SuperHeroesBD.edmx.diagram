@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c5ca58ba3c3493ea71bdce99d5a8840" Name="Diagram1">
+        <EntityTypeShape EntityType="SuperHeroesDBModel.Bombero" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.DC" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.Marvel" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.ProfesionesHeroicas" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.Sanitario" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.SuperHeroe" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SuperHeroesDBModel.SuperHumanos" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_Bombero_ProfesionesHeroicas" ManuallyRouted="false" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_DC_SuperHumanos" ManuallyRouted="false" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_Marvel_SuperHumanos" ManuallyRouted="false" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_ProfesionesHeroicas_SuperHeroe" ManuallyRouted="false" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_Sanitario_ProfesionesHeroicas" ManuallyRouted="false" />
+        <AssociationConnector Association="SuperHeroesDBModel.FK_SuperHumanos_SuperHeroe" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,82 @@
+﻿@using MVCSuperHeroes.Z_Capa2_Servicios.ClasesSuperHeroe;
+
+@model SanitarioDTO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sanitarios</h4>
+    <hr />
+    <div>
+        <div class="float-right col-3 overflow-hidden" style="height:300px;">
+            <img class="col-12" src="~/Content/images/@(Model.ImagenPath ?? "no-image-available.png")" />
+        </div>
+        <dl class="col-9 dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.dni)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.dni)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.apellidos)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.apellidos)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.edad)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.edad)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.peso)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.peso)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.altura)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.altura)
+            </dd>
+
+            <hr />
+
+            <dt>
+                @Html.DisplayNameFor(model => model.superPoder)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.superPoder)
+            </dd>
+        </dl>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idSuperHeroe }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
